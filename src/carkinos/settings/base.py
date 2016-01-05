@@ -60,6 +60,7 @@ THIRD_PARTY_APPS = (
 
 LOCAL_APPS = (
     'core',
+    'datasets',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -168,3 +169,5 @@ COMPRESS_PRECOMPILERS = (
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WERKZEUG_DEBUG = env.bool('WERKZEUG_DEBUG', default=True)
+
+DATA_ROOT = join(dirname(BASE_DIR), 'data')
