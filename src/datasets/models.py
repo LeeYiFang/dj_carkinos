@@ -47,7 +47,7 @@ class GeneralPlatform(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return '{0.name} ({0.pk})'.format(self)
+        return self.name
 
 
 class MicroarrayPlatform(GeneralPlatform):
@@ -137,3 +137,6 @@ class ProbeValue(models.Model):
         unique_together = (
             ('sample', 'probe_id'),
         )
+
+    def __str__(self):
+        return '{0.probe_id}={0.value:.2f}'.format(self)
