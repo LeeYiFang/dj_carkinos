@@ -26,27 +26,6 @@ Or on Windows, use
 
     . venv\Scripts\activate.bat
 
-#### Anaconda or Miniconda
-
-NOTE: Requires more setting.
-
-They are the same but anaconda comes with more packages at the downloading time
-and bigger size. [Anaconda] manages both the pacakges and Python version itself
-via [conda].
-
-To create a conda-based virtual environment, use
-
-    conda create -n venv python=3.5
-
-And activate it
-
-    . activate venv
-
-Or on Windows, use command-line console and run
-
-    activate venv
-
-
 ### Install Dependencies
 
 Use pip:
@@ -81,6 +60,45 @@ Run database mirgration:
 Run the development server
 
     python manage.py runserver
+
+
+## Process the Dataset
+
+All data processing are done under `data/`.
+
+First, install the requirements,
+
+    pip install -r requirements_data.txt
+
+Go to `data/scripts/`, run the Jupyter (IPython) notebook by
+
+    jupyter notebook
+
+The notebook will fill the data under `data/raw/` into the Django database.
+
+
+## Misc.
+
+#### Anaconda or Miniconda
+
+NOTE: Requires more setting.
+
+They are the same but anaconda comes with more packages at the downloading time
+and bigger size. [Anaconda] manages both the pacakges and Python version itself
+via [conda].
+
+To create a conda-based virtual environment, use
+
+    conda create -n venv python=3.5
+
+And activate it
+
+    . activate venv
+
+Or on Windows, use command-line console and run
+
+    activate venv
+
 
 
 [Anaconda]: https://www.continuum.io/downloads
