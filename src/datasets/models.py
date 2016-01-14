@@ -55,7 +55,6 @@ class MicroarrayPlatform(GeneralPlatform):
     manufacturer = models.CharField(
         max_length=256,
     )
-    probe_list = models.TextField()
 
 
 class Sample(models.Model):
@@ -63,25 +62,31 @@ class Sample(models.Model):
     name = models.CharField(
         max_length=1024,
     )
+
     cell_line = models.ForeignKey(
         'CellLine',
         related_name='samples',
         blank=True, null=True,
         on_delete=models.CASCADE,
     )
+
     dataset = models.ForeignKey(
         'DataSet',
         related_name='samples',
         on_delete=models.CASCADE,
     )
+    dataset_order = models.IntegerField()
+
     platform = models.ForeignKey(
         'GeneralPlatform',
+        related_name='samples',
         on_delete=models.CASCADE,
     )
 
     class Meta:
         unique_together = (
-            ("name", "dataset"),
+            ("dataset", "name"),
+            ("dataset", "dataset_order"),
         )
 
     def __str__(self):
@@ -93,7 +98,6 @@ class Gene(models.Model):
     entrez_id = models.IntegerField(
         null=True,
         blank=True,
-        unique=True,
     )
 
     gene_symbol = models.CharField(
@@ -118,6 +122,8 @@ class ProbeInfo(models.Model):
         related_name='probes',
     )
 
+    platform_order = models.IntegerField()
+
     genes = models.ManyToManyField(
         "Gene",
         related_name="probes",
@@ -126,6 +132,7 @@ class ProbeInfo(models.Model):
     class Meta:
         unique_together = (
             ("platform", "identifier"),
+            ("platform", "platform_order"),
         )
 
     def __str__(self):

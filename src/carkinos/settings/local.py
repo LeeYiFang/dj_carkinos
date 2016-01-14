@@ -64,12 +64,18 @@ LOGGING = {
             'propagate': True,
             'level': 'DEBUG',
         },
-        'project': {
-            'handlers': ['proj_log_file', 'console', ],
-            'level': 'DEBUG',
-        },
+        # 'project': {
+        #     'handlers': ['proj_log_file', 'console', ],
+        #     'level': 'DEBUG',
+        # },
     }
 }
+
+for app in LOCAL_APPS:
+    LOGGING['loggers'][app] = {
+        'handlers': ['proj_log_file', 'console', ],
+        'level': 'DEBUG',
+    }
 
 logging.config.dictConfig(LOGGING)
 
