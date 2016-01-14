@@ -96,16 +96,15 @@ class Sample(models.Model):
 class Gene(models.Model):
 
     entrez_id = models.IntegerField(
-        null=True,
-        blank=True,
+        unique=True,
     )
 
-    gene_symbol = models.CharField(
+    symbol = models.CharField(
         max_length=256,
         blank=True,
     )
 
-    gene_name = models.TextField(
+    name = models.TextField(
         blank=True,
     )
 
